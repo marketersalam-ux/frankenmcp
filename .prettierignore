@@ -1,0 +1,4 @@
+# Generated files — their formatting is the generator's output, not Prettier's.
+# (The dogfood test asserts servers/textkit/mcp-server.js is byte-identical
+# to fresh generation + the one documented hand adjustment.)
+servers/textkit/mcp-server.js

@@ -2,6 +2,7 @@
  * Type definitions for the agent-loop module.
  */
 import type { MCPToolSchema } from "../tokens/types";
+import type { SafetyFlag } from "../safety";
 
 /**
  * A single step in the agent's execution log.
@@ -47,4 +48,6 @@ export interface AgentRunResult {
   log: LogStep[];
   /** Summary statistics */
   summary: RunSummary;
+  /** Safety review flags */
+  safety: SafetyFlag[];
 }

@@ -36,6 +36,13 @@ function countFlags(model: FlagModel): number {
  */
 export function runAdapterLoop(helpText: string): AgentRunResult {
   const log: LogStep[] = [];
+  let safety = reviewSafety({
+    toolName: "",
+    description: "",
+    flags: [],
+    subcommands: [],
+    unparsedLines: [],
+  });
   const stamp = () => new Date().toISOString();
   const push = (step: LogStep["step"], status: LogStep["status"], detail: string) => {
     log.push({ step, status, detail, at: stamp() });
@@ -62,6 +69,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
       files: EMPTY_FILES,
       tools: [],
       log,
+      safety,
       summary: { flagsParsed: 0, toolsGenerated: 0, issuesFixed: 0, verified: false },
     };
   }
@@ -78,6 +86,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
       files: EMPTY_FILES,
       tools: [],
       log,
+      safety,
       summary: { flagsParsed: 0, toolsGenerated: 0, issuesFixed: 0, verified: false },
     };
   }
@@ -88,7 +97,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
   );
 
   // Step 2: Generate
-  const safety = reviewSafety(model);
+  safety = reviewSafety(model);
   const result = generateAdapter(model, safety, SDK_VERSION);
   let tools = result.tools;
   const metadata = buildToolMetadata(model);
@@ -103,6 +112,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
       files,
       tools: [],
       log,
+      safety,
       summary: { flagsParsed: flagCount, toolsGenerated: 0, issuesFixed: 0, verified: false },
     };
   }
@@ -150,6 +160,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
         files,
         tools,
         log,
+        safety,
         summary: {
           flagsParsed: flagCount,
           toolsGenerated: tools.length,
@@ -174,6 +185,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
     files,
     tools,
     log,
+    safety,
     summary: {
       flagsParsed: flagCount,
       toolsGenerated: tools.length,

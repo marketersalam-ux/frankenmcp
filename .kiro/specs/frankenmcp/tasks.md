@@ -31,12 +31,12 @@ Status key: `- [ ]` pending, `- [x]` done. Requirements references are to `requi
 
 ## Phase 3 — MCP live layer (Nov 20–22)
 
-- [ ] 13. Write the bundled demo CLI `servers/textkit/cli.js` (wc/reverse/slugify/upper) and verify it runs standalone
-- [ ] 14. Generate textkit's MCP server with our own generator, hand-verify it, commit as `servers/textkit/mcp-server.js` (dogfood)
-- [ ] 15. Write `servers/calculator/mcp-server.js` (add/subtract/multiply/divide)
-- [ ] 16. Implement `lib/mcp-client` (stdio for bundled allowlist + SSE/HTTP for remote URLs, timeouts + caps) + integration test (spawn → list → probe → kill)
+- [x] 13. Write the bundled demo CLI `servers/textkit/cli.js` (wc/reverse/slugify/upper) and verify it runs standalone — DONE 2026-11-15 (Kiro, haiku; coordinator rewrote arg parsing — Kiro's version only consumed LEADING flags, so `slugify "Hello World!" --separator _` slugified the flags as text; now flags work anywhere + --flag=value; added flags-after-text tests)
+- [x] 14. Generate textkit's MCP server with our own generator, hand-verify it, commit as `servers/textkit/mcp-server.js` (dogfood) — DONE 2026-11-15 (Kiro generated it; coordinator rewrote the dogfood test — Kiro's was static file-content checks with a false "can't run MCP in Vitest" excuse; now byte-equality vs fresh generation + live MCP client calls comparing server output to direct CLI output; one documented hand adjustment: run local cli.js via node; .prettierignore protects the generated file)
+- [x] 15. Write `servers/calculator/mcp-server.js` (add/subtract/multiply/divide) — DONE 2026-11-15 (Kiro, haiku; verified: 4 tools via real MCP client, divide-by-zero + non-number errors)
+- [x] 16. Implement `lib/mcp-client` (stdio for bundled allowlist + SSE/HTTP for remote URLs, timeouts + caps) + integration test (spawn → list → probe → kill) — DONE 2026-11-15 (Kiro, haiku, session interrupted by a runtime restart before its verification finished — files survived, coordinator completed it; fixes: SSE/StreamableHTTP constructors take a URL object not {url}; rewrote with a shared runWithClient helper; SSRF hardened — IPv6 brackets, ::ffff: mapped forms, link-local, 0.0.0.0, localhost., obfuscated numeric IPs; real hanging-server timeout test + real streamable-HTTP MCP server test replaced Kiro's nonexistent-domain stubs)
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 6.2, 6.3_
-- [ ] 17. Implement API routes `/api/generate`, `/api/connect`, `/api/probe` with structured errors
+- [x] 17. Implement API routes `/api/generate`, `/api/connect`, `/api/probe` with structured errors — DONE 2026-11-15 (Kiro, haiku; coordinator fixed next.config — outputFileTracingIncludes is top-level in Next 15.5, not under experimental; fixed 33 no-explicit-any lint errors in the route tests; loop result extended with safety flags; production build succeeds, all 3 routes dynamic)
   - _Requirements: 1, 2, 3, 4, 5_
 
 ## Phase 4 — UI (Nov 22–24)
