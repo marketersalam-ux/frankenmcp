@@ -1,0 +1,1 @@
+{"action":{"command":"npm test -- --run","type":"command"},"description":"Runs the Vitest suite whenever a source or test file is saved, so regressions surface immediately.","name":"Run tests on save","trigger":{"filePattern":"src/**/*.{ts,tsx}","type":"PostFileSave"}}

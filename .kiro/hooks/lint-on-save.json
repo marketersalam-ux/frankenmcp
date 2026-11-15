@@ -1,0 +1,1 @@
+{"action":{"command":"npx eslint --fix ${file} && npx prettier --write ${file}","type":"command"},"description":"Runs ESLint with auto-fix and Prettier on the saved file.","name":"Lint and format on save","trigger":{"filePattern":"src/**/*.{ts,tsx}","type":"PostFileSave"}}
