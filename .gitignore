@@ -13,3 +13,11 @@ out/
 .DS_Store
 *.log
 coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# build
+/build
+
+# vercel
+.vercel

@@ -5,12 +5,12 @@ Status key: `- [ ]` pending, `- [x]` done. Requirements references are to `requi
 
 ## Phase 1 — Scaffold (Nov 18)
 
-- [ ] 1. Create public GitHub repo `marketersalam-ux/frankenmcp` (MIT licence), clone into Kiro workspace
-- [ ] 2. Commit `.kiro/` first: specs (requirements/design/tasks), steering (product/tech/structure), hooks — first commit message: `chore: kiro spec + steering + hooks (frankenmcp)`
+- [x] 1. Create public GitHub repo `marketersalam-ux/frankenmcp` (MIT licence), clone into Kiro workspace — DONE 2026-11-15 (browser task; verified public via API)
+- [x] 2. Commit `.kiro/` first: specs (requirements/design/tasks), steering (product/tech/structure), hooks — first commit message: `chore: kiro spec + steering + hooks (frankenmcp)` — DONE 2026-11-15 (commit f4bcabf via GitHub push_files; .kiro at root, MIT detected)
   - _Requirements: Kiro evidence (rules §4)_
-- [ ] 3. Scaffold Next.js 15 + TypeScript + Tailwind app; verify `npm run dev` serves the starter page
-- [ ] 4. Add ESLint + Prettier + Vitest + fast-check + tiktoken + `@modelcontextprotocol/sdk`; verify `npm test` runs (empty suite passes)
-- [ ] 5. Write `.gitignore` (node_modules, .next, .env*) — verify it does NOT contain `.kiro`
+- [x] 3. Scaffold Next.js 15 + TypeScript + Tailwind app; verify `npm run dev` serves the starter page — DONE 2026-11-15 (Next 15.5.29 patched, dev serves 200 "Create Next App")
+- [x] 4. Add ESLint + Prettier + Vitest + fast-check + tiktoken + `@modelcontextprotocol/sdk`; verify `npm test` runs (empty suite passes) — DONE 2026-11-15 (vitest 3.2.4, fast-check 4.3.0, tiktoken 1.0.22, SDK 1.20.1, prettier 3.6.2; smoke test passes)
+- [x] 5. Write `.gitignore` (node_modules, .next, .env*) — verify it does NOT contain `.kiro` — DONE 2026-11-15 (verified: no `.kiro` in .gitignore)
 
 ## Phase 2 — Core libraries (Nov 18–20)
 
