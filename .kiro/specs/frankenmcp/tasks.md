@@ -14,19 +14,19 @@ Status key: `- [ ]` pending, `- [x]` done. Requirements references are to `requi
 
 ## Phase 2 — Core libraries (Nov 18–20)
 
-- [ ] 6. Implement `lib/help-parser` (flag/subcommand model + unparsed lines)
+- [x] 6. Implement `lib/help-parser` (flag/subcommand model + unparsed lines) — DONE 2026-11-15 (Kiro wrote types + first parser + fixture tests; coordinator rewrote parser cleanly — removed fixture-specific hardcoding, fixed description extraction; verified: ffmpeg 43 flags, git 22 subcommands, curl 256 flags)
   - _Requirements: 1.1, 1.2_
-- [ ] 7. Add hand-verified fixtures: real ffmpeg, git, curl `--help` text in `src/data/samples/` + expected flag counts
+- [x] 7. Add hand-verified fixtures: real ffmpeg, git, curl `--help` text in `src/data/samples/` + expected flag counts — DONE 2026-11-15 (real output captured from the VM's tools; counts hand-verified: ffmpeg 43/0/25, git 0/22/9, curl 256/0/2)
   - _Requirements: 1.5_
-- [ ] 8. Property-based round-trip test for the parser (fast-check: model → rendered help → parse → equal)
+- [x] 8. Property-based round-trip test for the parser (fast-check: model → rendered help → parse → equal) — DONE 2026-11-15 (200-run round-trip + determinism properties pass; the round-trip discipline forced the clean parser rewrite)
   - _Requirements: 1.1, 1.2_
-- [ ] 9. Implement `lib/tokens` (tiktoken counts, per-tool + total, trimmed-config builder) + determinism test
+- [x] 9. Implement `lib/tokens` (tiktoken counts, per-tool + total, trimmed-config builder) + determinism test — DONE 2026-11-15 (Kiro, haiku; coordinator switched counter to get_encoding("cl100k_base") directly)
   - _Requirements: 3.1, 3.2, 3.3, 3.4_
-- [ ] 10. Implement `lib/safety` (destructive list, path flags, network/credential flags) + unit tests
+- [x] 10. Implement `lib/safety` (destructive list, path flags, network/credential flags) + unit tests — DONE 2026-11-15 (Kiro wrote first version; coordinator rewrote matching to whole-word + phrase rules — substring matching falsely flagged --form/--hardware/--support; added false-positive tests)
   - _Requirements: 4.1, 4.2, 4.3, 4.4_
-- [ ] 11. Implement `lib/adapter-gen` (FlagModel → server.js + package.json + README + tool schemas) + schema validation
+- [x] 11. Implement `lib/adapter-gen` (FlagModel → server.js + package.json + README + tool schemas) + schema validation — DONE 2026-11-15 (Kiro, haiku; coordinator rewrote the server template — Kiro's version defined callTool once PER TOOL (later defs shadow earlier ones) and never passed the subcommand to the CLI; rewrote to ONE callTool + TOOL_COMMANDS/TOOL_FLAGS maps, name/property dedupe at generation)
   - _Requirements: 1.3, 1.4_
-- [ ] 12. Implement `lib/agent-loop` (parse → generate → validate → fix → verify + step log) + failure-path test
+- [x] 12. Implement `lib/agent-loop` (parse → generate → validate → fix → verify + step log) + failure-path test — DONE 2026-11-15 (Kiro, haiku; coordinator rewrote — Kiro's fix path rebuilt files from UNFIXED tools so files and tools diverged, and the success path logged no fix step; now files are always rebuilt from fixed tools, all 5 steps always logged, fix strategies deep-copy + return a rename map)
   - _Requirements: 2.1, 2.2, 2.3, 2.4_
 
 ## Phase 3 — MCP live layer (Nov 20–22)
