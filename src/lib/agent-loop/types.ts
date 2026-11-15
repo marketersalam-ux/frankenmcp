@@ -50,4 +50,6 @@ export interface AgentRunResult {
   summary: RunSummary;
   /** Safety review flags */
   safety: SafetyFlag[];
+  /** Lines from the help text that could not be parsed */
+  unparsedLines: string[];
 }

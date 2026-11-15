@@ -41,15 +41,15 @@ Status key: `- [ ]` pending, `- [x]` done. Requirements references are to `requi
 
 ## Phase 4 — UI (Nov 22–24)
 
-- [ ] 18. Build the Generate panel (textarea + samples + agent log + code viewer + cost table + safety panel + download)
+- [x] 18. Build the Generate panel (textarea + samples + agent log + code viewer + cost table + safety panel + download) — DONE 2026-11-15 (Kiro, haiku; GeneratePanel + AgentLog/CostTable/CodeViewer/SafetyPanel/CopyButton + GET /api/samples; coordinator fixed Tailwind v4 bg-opacity classes + <p>-in-<pre> nesting)
   - _Requirements: 1, 2, 3, 4, 8.1_
-- [ ] 19. Build the Connect panel (server picker + tool list with costs + probe form + verbatim result)
+- [x] 19. Build the Connect panel (server picker + tool list with costs + probe form + verbatim result) — DONE 2026-11-15 (Kiro, haiku; ConnectPanel + probe-args helper; coordinator fixed a REAL bug: Kiro fed CostTable a fake chars/4 client-side estimate while the footnote claimed cl100k_base — now uses the real tiktoken costs from /api/connect; also fixed <span>-in-<option> + probe disabled for no-arg tools)
   - _Requirements: 5, 3_
-- [ ] 20. Build the Config panel (trimmed config viewer + copy + download)
+- [x] 20. Build the Config panel (trimmed config viewer + copy + download) — DONE 2026-11-15 (Kiro, haiku; ConfigPanel + POST /api/trim + downloadTextFile; coordinator fixed stale pickedNames when tools arrive after mount (useEffect sync), displayed the source label, and disabled Build with 0 picks in trimmed mode)
   - _Requirements: 3.3, 8.2, 8.3_
-- [ ] 21. Add honest-limits labelling throughout (tokenizer name + "estimate", deterministic-loop wording, unparsed-lines display)
+- [x] 21. Add honest-limits labelling throughout (tokenizer name + "estimate", deterministic-loop wording, unparsed-lines display) — DONE 2026-11-15 (unparsedLines added to AgentRunResult + /api/generate response; cl100k_base + 'estimate' on every token display; deterministic-loop wording in AgentLog caption + footer; footer 'Limits, stated plainly')
   - _Requirements: 9.1, 9.2, 9.3_
-- [ ] 22. Full UI pass: no sign-in, no key prompts anywhere; verify the whole workflow keyless
+- [x] 22. Full UI pass: no sign-in, no key prompts anywhere; verify the whole workflow keyless — DONE 2026-11-15 (grep-verified: no sign-in/key/password prompts in UI; e2e vs local dev server: generate ffmpeg -> connect textkit -> probe slugify 'hello_world' -> trim names-only saved 211 -> samples; 212 tests pass, tsc + lint + build green)
   - _Requirements: 7.1, 7.2_
 
 ## Phase 5 — Hardening + deploy (Nov 24–26)

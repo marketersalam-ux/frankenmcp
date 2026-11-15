@@ -81,6 +81,7 @@ export async function POST(request: NextRequest) {
         safety: result.safety,
         log: result.log,
         summary: result.summary,
+        unparsedLines: result.unparsedLines,
       },
       { status: 200 },
     );

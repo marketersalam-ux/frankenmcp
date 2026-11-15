@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-lab-bg: #070d08;
+  --color-lab-panel: #0d1710;
+  --color-lab-line: #1e3325;
+  --color-slime: #a3e635;
+  --color-slime-dim: #65a30d;
+  --color-amber-glow: #f59e0b;
+  --color-blood: #ef4444;
+  --color-bone: #e7e5d9;
+  --color-ash: #94a39a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-lab-bg: var(--color-lab-bg);
+  --color-lab-panel: var(--color-lab-panel);
+  --color-lab-line: var(--color-lab-line);
+  --color-slime: var(--color-slime);
+  --color-slime-dim: var(--color-slime-dim);
+  --color-amber-glow: var(--color-amber-glow);
+  --color-blood: var(--color-blood);
+  --color-bone: var(--color-bone);
+  --color-ash: var(--color-ash);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: var(--color-lab-bg);
+  color: var(--color-bone);
+  font-family: var(--font-geist-sans), sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.lab-grid {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(30, 51, 37, 0.1) 0px,
+      rgba(30, 51, 37, 0.1) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(30, 51, 37, 0.1) 0px,
+      rgba(30, 51, 37, 0.1) 1px,
+      transparent 1px,
+      transparent 20px
+    );
 }

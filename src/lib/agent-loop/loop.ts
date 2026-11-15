@@ -71,6 +71,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
       log,
       safety,
       summary: { flagsParsed: 0, toolsGenerated: 0, issuesFixed: 0, verified: false },
+      unparsedLines: [],
     };
   }
 
@@ -88,6 +89,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
       log,
       safety,
       summary: { flagsParsed: 0, toolsGenerated: 0, issuesFixed: 0, verified: false },
+      unparsedLines: model.unparsedLines,
     };
   }
   push(
@@ -114,6 +116,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
       log,
       safety,
       summary: { flagsParsed: flagCount, toolsGenerated: 0, issuesFixed: 0, verified: false },
+      unparsedLines: model.unparsedLines,
     };
   }
   push(
@@ -167,6 +170,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
           issuesFixed,
           verified: false,
         },
+        unparsedLines: model.unparsedLines,
       };
     }
   }
@@ -192,6 +196,7 @@ export function runAdapterLoop(helpText: string): AgentRunResult {
       issuesFixed,
       verified: finalValidation.valid,
     },
+    unparsedLines: model.unparsedLines,
   };
 }
 
