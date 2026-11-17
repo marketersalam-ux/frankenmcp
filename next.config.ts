@@ -10,9 +10,22 @@ const nextConfig: NextConfig = {
   // (verified live 2026-11-18: /api/generate + /api/trim 500, /api/probe
   // and /api/samples — no tiktoken import — answer fine). Keeping the
   // package external runs it from node_modules, WASM file included.
-  serverExternalPackages: ["tiktoken"],
+  // @modelcontextprotocol/sdk is external for the same tracing reason in
+  // reverse: the bundled demo servers are spawned as child processes and
+  // import the SDK from node_modules at runtime — when webpack inlines it
+  // into the route bundle, the package files never reach the function and
+  // the child dies instantly (502 "Connection closed", 2026-11-18).
+  serverExternalPackages: ["tiktoken", "@modelcontextprotocol/sdk"],
   outputFileTracingIncludes: {
-    "/api/*": ["./servers/**/*", "./src/data/samples/**/*"],
+    "/api/*": [
+      "./servers/**/*",
+      "./src/data/samples/**/*",
+      // The spawned demo servers import the SDK's SERVER modules, which
+      // file tracing drops (the routes only import the client side).
+      // Verified 2026-11-18: without this the child dies with
+      // ERR_MODULE_NOT_FOUND for dist/esm/server/index.js.
+      "./node_modules/@modelcontextprotocol/sdk/**/*",
+    ],
   },
 };
 
