@@ -86,21 +86,32 @@ slipped past the `::1` check. Nothing was left known-broken.
 ## Nov 18 — Deployed to Vercel
 
 - Imported the repo in the Vercel dashboard; the first production
-  deploy finished in 49 seconds. Live at https://frankenmcp.vercel.app.
+  deploy finished in 49 seconds.
+- The first URL I checked, frankenmcp.vercel.app, turned out to be a
+  different FrankenMCP project that already owned the domain — its
+  title and metadata didn't match my repo, and it serves its own
+  `/api/health`. My project's real URL is
+  https://frankenmcp-eight.vercel.app.
 - Phase 5 checks: full suite re-run 212/212 (19 files), secrets grep
   clean, production build succeeds with all five API routes in the
   route table.
-- Verification caught a real defect in the first deploy: the homepage
-  loads but every `/api/*` route returns 404. The code is fine — a
-  local production build serves the routes — so the first Vercel
-  build looks like a bad deploy. Triggered a fresh deploy with this
-  commit; end-to-end verification continues on the new build.
+- Verification caught two real defects on the live deployment, both
+  file-tracing issues, both fixed in `next.config.ts`:
+  - tiktoken's WASM binary was dropped by the bundler, so every route
+    importing it 500'd. Fixed with `serverExternalPackages`.
+  - The spawned demo servers died instantly — the SDK's server
+    modules were never traced (the routes only import the client
+    side), so connect/probe 502'd. Fixed by externalizing the SDK and
+    tracing its whole package.
+- End-to-end verified live on frankenmcp-eight.vercel.app: generate
+  ffmpeg (43 flags, 25 unparsed lines, 851 tokens), git (22 tools,
+  1,180 tokens), curl (256 flags, 4,972 tokens); trim 851 → 19
+  tokens (names-only); connect textkit (4 tools, 289 tokens) and
+  calculator (4 tools); probe add(2,3) = 5, wc counts 4 words. All
+  five API routes answer. Phase 5 complete.
 
 ## Still to do
 
-- **Phase 5 (Nov 18 — moved up, the build finished early)** — full
-  suite re-run ✓, security review ✓, Vercel deploy ✓, end-to-end
-  verification on the deployed URL in progress.
 - **Phase 6 (Nov 18–19)** — UI copy polish, demo video (<3 min,
   screen recording of the deployed app), Kiro write-up, Bonus Blog +
   Social Blitz, Devpost submission Nov 19–20 Dhaka time.

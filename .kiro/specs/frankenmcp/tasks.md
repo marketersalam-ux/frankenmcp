@@ -56,7 +56,7 @@ Status key: `- [ ]` pending, `- [x]` done. Requirements references are to `requi
 
 - [x] 23. Run the full test suite (unit + property + integration); fix failures; record results in BUILD-LOG.md — re-run Nov 18: 212/212 pass (19 files)
 - [x] 24. Security review against Requirement 6 (no user-CLI execution, allowlist-only spawn, no secrets in repo) — grep the repo for secrets/keys — done Nov 18: secrets grep clean, no env vars in src/ or servers/, .gitignore covers .env* and .vercel
-- [ ] 25. Deploy to Vercel (free tier); verify the deployed URL end-to-end: generate (ffmpeg sample) → connect (textkit) → probe → download — deployed Nov 18, https://frankenmcp.vercel.app; first deploy served 404 on all /api/* routes (local build serves them fine), redeploy triggered, verification in progress
+- [x] 25. Deploy to Vercel (free tier); verify the deployed URL end-to-end: generate (ffmpeg sample) → connect (textkit) → probe → download — deployed Nov 18, live at https://frankenmcp-eight.vercel.app (frankenmcp.vercel.app belongs to a different FrankenMCP project); E2E verified live: generate ffmpeg 43 flags / 25 unparsed / 851 tokens, git 22 tools / 1,180, curl 256 flags / 4,972, trim 851→19, connect textkit 4 tools / 289 + calculator 4 tools, probe add(2,3)=5, wc words:4; fixed two tracing defects en route (tiktoken WASM via serverExternalPackages; SDK server modules traced for the spawned servers)
 - [ ] 26. Checkpoint: ~80% done by Nov 27. Anything unfinished is cut or descoped in writing, not silently dropped.
 
 ## Phase 6 — Packaging (Nov 18–19 — moved up, before the Agentware sprint)
