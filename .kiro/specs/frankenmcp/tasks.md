@@ -52,14 +52,14 @@ Status key: `- [ ]` pending, `- [x]` done. Requirements references are to `requi
 - [x] 22. Full UI pass: no sign-in, no key prompts anywhere; verify the whole workflow keyless — DONE 2026-11-15 (grep-verified: no sign-in/key/password prompts in UI; e2e vs local dev server: generate ffmpeg -> connect textkit -> probe slugify 'hello_world' -> trim names-only saved 211 -> samples; 212 tests pass, tsc + lint + build green)
   - _Requirements: 7.1, 7.2_
 
-## Phase 5 — Hardening + deploy (Nov 24–26)
+## Phase 5 — Hardening + deploy (Nov 18 — moved up, the build finished early)
 
-- [ ] 23. Run the full test suite (unit + property + integration); fix failures; record results in BUILD-LOG.md
-- [ ] 24. Security review against Requirement 6 (no user-CLI execution, allowlist-only spawn, no secrets in repo) — grep the repo for secrets/keys
-- [ ] 25. Deploy to Vercel (free tier); verify the deployed URL end-to-end: generate (ffmpeg sample) → connect (textkit) → probe → download
+- [x] 23. Run the full test suite (unit + property + integration); fix failures; record results in BUILD-LOG.md — re-run Nov 18: 212/212 pass (19 files)
+- [x] 24. Security review against Requirement 6 (no user-CLI execution, allowlist-only spawn, no secrets in repo) — grep the repo for secrets/keys — done Nov 18: secrets grep clean, no env vars in src/ or servers/, .gitignore covers .env* and .vercel
+- [ ] 25. Deploy to Vercel (free tier); verify the deployed URL end-to-end: generate (ffmpeg sample) → connect (textkit) → probe → download — deployed Nov 18, https://frankenmcp.vercel.app; first deploy served 404 on all /api/* routes (local build serves them fine), redeploy triggered, verification in progress
 - [ ] 26. Checkpoint: ~80% done by Nov 27. Anything unfinished is cut or descoped in writing, not silently dropped.
 
-## Phase 6 — Packaging (Dec 1–3) — AFTER the Agentware sprint
+## Phase 6 — Packaging (Nov 18–19 — moved up, before the Agentware sprint)
 
 - [ ] 27. Polish pass on UI copy + README (setup instructions a stranger can follow in <15 min)
 - [ ] 28. Record demo video (<3 min, screen recording of the DEPLOYED app, no face, no voice); upload to YouTube (public)
@@ -67,7 +67,7 @@ Status key: `- [ ]` pending, `- [x]` done. Requirements references are to `requi
 - [ ] 30. Publish the Bonus Blog post on dev.to (Kiro + the project, mentioning Kiroween 2026)
 - [ ] 31. Post the Social Blitz post (public, starts with `#KiroweenHackathon26`)
 - [ ] 32. Fill the Devpost form (category Frankenstein + Best Student Project with BMU details) — review the full submission before submitting
-- [ ] 33. SUBMIT by Thu Dec 3 Dhaka time. Confirm submission receipt; record the Devpost URL.
+- [ ] 33. SUBMIT by Nov 19–20 Dhaka time (moved up; hard deadline Dec 4). Confirm submission receipt; record the Devpost URL.
 
 ## Stretch (only if Phases 1–5 finish early)
 

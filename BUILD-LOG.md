@@ -83,10 +83,24 @@ slipped past the `::1` check. Nothing was left known-broken.
   remaining phases run on those credits, in Kiro, the same spec-driven way.
   Phases 1–4 above were built on the Free plan (50 credits/month).
 
+## Nov 18 — Deployed to Vercel
+
+- Imported the repo in the Vercel dashboard; the first production
+  deploy finished in 49 seconds. Live at https://frankenmcp.vercel.app.
+- Phase 5 checks: full suite re-run 212/212 (19 files), secrets grep
+  clean, production build succeeds with all five API routes in the
+  route table.
+- Verification caught a real defect in the first deploy: the homepage
+  loads but every `/api/*` route returns 404. The code is fine — a
+  local production build serves the routes — so the first Vercel
+  build looks like a bad deploy. Triggered a fresh deploy with this
+  commit; end-to-end verification continues on the new build.
+
 ## Still to do
 
-- **Phase 5 (Nov 24–26)** — full suite re-run, security review, Vercel
-  deploy, end-to-end verification on the deployed URL.
-- **Phase 6 (Dec 1–3)** — UI copy polish, demo video (<3 min, screen
-  recording of the deployed app), Kiro write-up, Bonus Blog + Social Blitz,
-  Devpost submission by Dec 3 Dhaka time.
+- **Phase 5 (Nov 18 — moved up, the build finished early)** — full
+  suite re-run ✓, security review ✓, Vercel deploy ✓, end-to-end
+  verification on the deployed URL in progress.
+- **Phase 6 (Nov 18–19)** — UI copy polish, demo video (<3 min,
+  screen recording of the deployed app), Kiro write-up, Bonus Blog +
+  Social Blitz, Devpost submission Nov 19–20 Dhaka time.

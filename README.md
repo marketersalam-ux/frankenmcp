@@ -9,6 +9,8 @@ generates a working MCP server, validates and verifies the output, and shows
 you the token cost of every tool schema before you install it. Connect to a
 live MCP server and measure it the same way.
 
+**Live:** https://frankenmcp.vercel.app — no sign-in, no API key.
+
 ## What it does
 
 1. **Generate** — paste `--help` text (or pick a built-in ffmpeg/git/curl
